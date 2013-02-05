@@ -4,6 +4,8 @@ build_dir=$1
 cache_dir=$2
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+echo `$script_dir`
+echo `ls -la $script_dir`
 mkdir -p $build_dir/.profile.d/
 bundle install --gemfile $script_dir/support/Gemfile --without development:test --path $build_dir/.gems --binstubs $build_dir/bin/ --deployment
 cp $script_dir/support/riemann-health.sh $build_dir/.profile.d/
