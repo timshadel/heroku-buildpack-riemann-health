@@ -16,8 +16,7 @@ pack_dir="$( cd "$( dirname "$0" )/.." && pwd )"
 
 ##
 # Use build box's bundler to install
-export PATH=:/usr/local/bin:$PATH
-bundle install --gemfile $pack_dir/support/Gemfile --without development:test --path $build_dir/.riemann-tools-gems --binstubs $build_dir/bin/ --deployment
+PATH=:/usr/local/bin:$PATH bundle install --gemfile $pack_dir/support/Gemfile --without development:test --path $build_dir/.riemann-tools-gems --binstubs $build_dir/bin/ --deployment
 
 ##
 # Put the starter scripts in
