@@ -4,9 +4,17 @@ build_dir=$1
 cache_dir=$2
 pack_dir="$( cd "$( dirname "$0" )/.." && pwd )"
 
-echo `$pack_dir`
-echo `ls -la $pack_dir/support`
-echo `ls -la $pack_dir/bin`
+##
+# Bootstrap bundler
+BUNDLER_VERSION="1.3.0.pre.5"
+BUNDLER_GEM_PATH= "bundler-#{BUNDLER_VERSION}"
+VENDOR_URL="https://s3.amazonaws.com/heroku-buildpack-ruby"
+BUNDLER_DIR=`mktmp --tmpdir riemann-tools-bundler-XXXXXXXXXX`
+cd $BUNDLER_DIR
+curl $VENDOR_URL/$BUNDLER_GEM_PATH.tgz -s -o - | tar xzf -
+GEM_PATH="$BUNDLER_DIR" bundle install --gemfile $pack_dir/support/Gemfile --without development:test --path $build_dir/.riemann-tools-gems --binstubs $build_dir/bin/ --deployment
+
+##
+# Put the starter scripts in
 mkdir -p $build_dir/.profile.d/
-bundle install --gemfile $pack_dir/support/Gemfile --without development:test --path $build_dir/.gems --binstubs $build_dir/bin/ --deployment
 cp $pack_dir/support/riemann-health.sh $build_dir/.profile.d/
