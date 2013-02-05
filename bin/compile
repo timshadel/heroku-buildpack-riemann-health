@@ -12,7 +12,7 @@ VENDOR_URL="https://s3.amazonaws.com/heroku-buildpack-ruby"
 BUNDLER_DIR=`mktemp -d --tmpdir riemann-tools-bundler-XXXXXXXXXX`
 cd $BUNDLER_DIR
 curl $VENDOR_URL/$BUNDLER_GEM_PATH.tgz -s -o - | tar xzf -
-GEM_PATH="$BUNDLER_DIR" bundle install --gemfile $pack_dir/support/Gemfile --without development:test --path $build_dir/.riemann-tools-gems --binstubs $build_dir/bin/ --deployment
+PATH=$PATH:$BUNDLER_DIR/bin GEM_PATH="$BUNDLER_DIR" bundle install --gemfile $pack_dir/support/Gemfile --without development:test --path $build_dir/.riemann-tools-gems --binstubs $build_dir/bin/ --deployment
 
 ##
 # Put the starter scripts in
