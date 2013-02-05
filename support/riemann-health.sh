@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec riemann-health --help
+echo which riemann-health
