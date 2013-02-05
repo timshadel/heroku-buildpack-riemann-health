@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    beefcake (0.3.7)
+    mtrc (0.0.4)
+    munin-ruby (0.2.3)
+    redis (3.0.2)
+    riemann-client (0.0.8)
+      beefcake (>= 0.3.5)
+      mtrc (>= 0.0.4)
+      trollop (>= 1.16.2)
+    riemann-tools (0.0.9)
+      munin-ruby (>= 0.2.1)
+      redis (>= 3.0.2)
+      riemann-client (>= 0.0.8)
+      trollop (>= 1.16.2)
+      yajl-ruby (>= 1.1.0)
+    trollop (2.0)
+    yajl-ruby (1.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  riemann-tools
