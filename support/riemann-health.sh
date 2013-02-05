@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo which riemann-health
+PATH=:/usr/local/bin:$PATH bundle exec riemann-health &
